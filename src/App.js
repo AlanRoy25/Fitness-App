@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css';
-import './components/Slider/Slider.css'
 import {Route, Routes} from 'react-router-dom'
 import {Box} from '@mui/material'
 import ExerciseDetail from './pages/ExerciseDetail'
