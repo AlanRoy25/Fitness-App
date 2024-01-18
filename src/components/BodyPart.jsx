@@ -10,8 +10,8 @@ const BodyPart = ({item, setBodyPart, bodyPart}) => {
     alignItems={'center'}
     justifyContent={'center'}
     className='bodyPart-card'
-    sx={ {
-      borderTop:bodyPart === item ? '4px solid #ff2625' : '',
+    sx={bodyPart === item ? 
+      { borderTop: '4px solid #ff2625' ,
       backgroundColor: '#fff',
       borderBottomLeftRadius: '20px',
       width: '270px',
@@ -19,10 +19,10 @@ const BodyPart = ({item, setBodyPart, bodyPart}) => {
       cursor: 'pointer' , 
       gap: '40px'
     }
-    }
+    : { background: '#fff', borderBottomLeftRadius: '20px', width: '270px', height: '282px', cursor: 'pointer', gap: '47px' }}
     onClick={() =>{
       setBodyPart(item);
-      window.scrollTo({top:100, left:100, behavior:'smooth'})
+      window.scrollTo({top:1800, left:100, behavior:'smooth'})
     }}
     
     > 
