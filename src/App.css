@@ -6,3 +6,17 @@
   width: 600px;
   height: 400px;
 }
+
+ScrollMenu{
+  display: flex;
+  overflow-x: auto;
+}
+.right-arrow{
+  width: 40px;
+  height: 40px;
+}
+
+.left-arrow{
+  width: 40px;
+  height: 40px;
+}
