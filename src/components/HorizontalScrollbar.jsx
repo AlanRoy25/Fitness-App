@@ -1,46 +1,48 @@
-import React, { useContext } from 'react';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
-import { Box, Typography } from '@mui/material';
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import ExerciseCard from './ExerciseCard.jsx';
-
 import BodyPart from './BodyPart';
+import LeftArrowIcon from '../assets/icons/left-arrows_7268565.png'
 import RightArrowIcon from '../assets/icons/right-arrow_271228.png'
-import LeftArrowIcon from '../assets/icons/left-arrows_7268565.png';
+import React, { useContext} from 'react';
+import { Typography } from '@mui/material';
 
-const LeftArrow = () => {
-  const { scrollPrev } = useContext(VisibilityContext);
+const HorizontalScrollbar = ({ data, bodyParts, setBodyPart, bodyPart }) => {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 11,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
 
-  return (
-    <Typography onClick={() => scrollPrev()} className="right-arrow">
-      <img src={RightArrowIcon} alt="right-arrow" style={{width:'50px', height: '50px'}}/>
+  
+  const LeftArrow = ({ onClick }) => (
+    <Typography onClick={onClick} className="left-arrow">
+      <img src={LeftArrowIcon} alt="left-arrow" style={{width:'200px', height:'200px'}}/>
     </Typography>
   );
-};
 
-const RightArrow = () => {
-  const { scrollNext } = useContext(VisibilityContext);
-
-  return (
-    <Typography onClick={() => scrollNext()} className="left-arrow">
-      <img src={LeftArrowIcon} alt="right-arrow" style={{width:'50px', height: '50px'}}/>
+  const RightArrow = ({ onClick }) => (
+    <Typography onClick={onClick} className="right-arrow">
+      <img src={RightArrowIcon} alt="right-arrow" />
     </Typography>
   );
-};
 
-const HorizontalScrollbar = ({ data, bodyParts, setBodyPart, bodyPart }) => (
-  <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-    {data.map((item) => (
-      <Box
-        key={item.id || item}
-        itemID={item.id || item}
-        title={item.id || item}
-        m="0 40px"
-      >
-        {bodyParts ? <BodyPart item={item} setBodyPart={setBodyPart} bodyPart={bodyPart} /> : <ExerciseCard exercise={item} /> }
-      </Box>
-    ))}
-  </ScrollMenu>
-);
+  return (
+    <Slider {...settings} nextArrow={< RightArrow />} LeftArrow={<LeftArrow />}>
+      {data.map((item) => (
+        <div key={item.id || item}>
+          {bodyParts ? (
+            <BodyPart item={item} setBodyPart={setBodyPart} bodyPart={bodyPart} />
+          ) : (
+            <ExerciseCard exercise={item} />
+          )}
+        </div>
+      ))}
+    </Slider>
+  );
+};
 
 export default HorizontalScrollbar;
